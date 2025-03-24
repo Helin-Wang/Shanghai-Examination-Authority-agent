@@ -1,0 +1,24 @@
+# 忽略 Python 的虚拟环境和编译文件
+__pycache__/
+*.pyc
+*.pyo
+venv/
+
+# 忽略日志文件
+*.log
+
+# 忽略 node.js 相关文件
+node_modules/
+dist/
+build/
+
+# 忽略 IDE 配置文件
+.vscode/
+.idea/
+*.iml
+
+# 忽略测试文件
+test/*
+
+# 忽略模型文件
+src/models/m3e-base/*
