@@ -8,10 +8,10 @@ WORKDIR /app
 COPY . /app
 
 # 安装依赖（如果用 pip）
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # Expose Streamlit 8601 端口
-EXPOSE 8601
+EXPOSE 8701
 
 # 运行 Streamlit
-CMD ["streamlit", "run", "app.py", "--server.port=8601", "--server.address=0.0.0.0", "--server.runOnSave=True"]
+CMD ["streamlit", "run", "app.py", "--server.port=8701", "--server.runOnSave=True"]

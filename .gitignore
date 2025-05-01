@@ -21,4 +21,9 @@ build/
 test/*
 
 # 忽略模型文件
-src/models/m3e-base/*
+src/models/*
+
+build.py
+chroma_test.py
+test.py
+*.txt

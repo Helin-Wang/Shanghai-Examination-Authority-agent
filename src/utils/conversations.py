@@ -35,6 +35,18 @@ class Role(Enum):
                 return st.chat_message(name="user", avatar="user")
             case Role.ASSISTANT:
                 return st.chat_message(name="assistant", avatar="assistant")
+            
+def str2Role(data: str) -> Role:
+    """
+    从字符串数据中创建Role实例。
+    """
+    if data == "<|system|>":
+        return Role.SYSTEM
+    elif data == "<|user|>":
+        return Role.USER
+    elif data == "<|assistant|>":
+        return Role.ASSISTANT
+            
 
 @dataclass
 class Conversation:
@@ -89,5 +101,4 @@ class Conversation:
         else:
             convers.append({"role": f"{self.role}", "content": f"{self.content}"})
         return convers
-    
     

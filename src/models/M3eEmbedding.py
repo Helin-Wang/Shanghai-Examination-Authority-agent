@@ -13,3 +13,11 @@ class M3eEmbeddings:
         """
         embeddings = self.model.encode(documents)  # 使用 embed 方法生成嵌入向量
         return embeddings
+
+    def embed_text(self, text):
+        """
+        实现 LangChain 所需的 embed_text 方法，返回单个文本的嵌入向量；
+        此处的text是string
+        """
+        embedding = self.model.encode(text)
+        return embedding
