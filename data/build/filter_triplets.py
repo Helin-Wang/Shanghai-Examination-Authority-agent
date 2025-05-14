@@ -8,12 +8,9 @@ import ast
 import os
 import argparse
 
-api_key_r1 = 'ebe4d4b6-00ae-4ea7-9890-9356d6a29570'
-os.environ["OPENAI_API_BASE"] = 'https://ark.cn-beijing.volces.com/api/v3'
-os.environ["OPENAI_API_KEY"] = api_key_r1
 client = OpenAI(
-  api_key=api_key_r1, 
-  base_url = 'https://ark.cn-beijing.volces.com/api/v3'
+  api_key="", # Your API Key 
+  base_url = "", # Your Base Url
 )
 
 filter_prompt = """你是一个知识图谱优化助手。你将获得一个文本片段和与该文本相关的一个知识图谱三元组。由于三元组可能存在不完整、不清晰或冗余的情况，请你按照以下步骤进行优化，并在每一步提供详细的推理过程。
