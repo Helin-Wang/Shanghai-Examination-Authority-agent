@@ -27,3 +27,5 @@ build.py
 chroma_test.py
 test.py
 *.txt
+
+#data/*
