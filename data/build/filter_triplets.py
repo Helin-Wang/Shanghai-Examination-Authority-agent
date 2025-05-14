@@ -6,6 +6,7 @@ import pandas as pd
 from tqdm import tqdm
 import ast
 import os
+import argparse
 
 api_key_r1 = 'ebe4d4b6-00ae-4ea7-9890-9356d6a29570'
 os.environ["OPENAI_API_BASE"] = 'https://ark.cn-beijing.volces.com/api/v3'
@@ -91,8 +92,13 @@ def filter_triplet_by_llm(part, section, subsection, text, triplet):
 
 
 if __name__ == "__main__":
-    filepath = './考试院faq第1版第7.00稿（打印版）-修改20250508 - 高考 一到六_triplets.csv'
-    df = pd.read_csv(filepath)
+    parser = argparse.ArgumentParser(description='清洗与优化知识图谱三元组')
+    parser.add_argument('--input_path', type=str, required=True, help='输入CSV路径')
+    parser.add_argument('--output_path', type=str, required=True, help='输出CSV路径')
+    args = parser.parse_args()
+
+    #filepath = './考试院faq第1版第7.00稿（打印版）-修改20250508 - 高考 一到六_triplets.csv'
+    df = pd.read_csv(args.input_path)
     print(df.head())
     
     new_triplets = []
@@ -113,4 +119,5 @@ if __name__ == "__main__":
         print(f"Error: {e}")
     finally:     
         df["修改后三元组"] = new_triplets
-        df.to_csv('./考试院faq第1版第7.00稿（打印版）-修改20250508 - 高考 一到六_modified_triplets.csv', index=False)
+        #df.to_csv('./考试院faq第1版第7.00稿（打印版）-修改20250508 - 高考 一到六_modified_triplets.csv', index=False)
+        df.to_csv(args.output_path, index=False)

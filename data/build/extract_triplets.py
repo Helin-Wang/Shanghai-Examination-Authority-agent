@@ -3,6 +3,7 @@ from openai import OpenAI
 from tqdm import tqdm
 import re
 import os
+import argparse
 
 api_key_r1 = 'ebe4d4b6-00ae-4ea7-9890-9356d6a29570'
 os.environ["OPENAI_API_BASE"] = 'https://ark.cn-beijing.volces.com/api/v3'
@@ -51,9 +52,14 @@ def extract_triplet_by_llm(part, section, subsection, text):
     return extract_triplet_from_ans(answer)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='从问答对中抽取三元组')
+    parser.add_argument('--input_path', type=str, required=True, help='输入CSV路径')
+    parser.add_argument('--output_path', type=str, required=True, help='输出CSV路径')
+    args = parser.parse_args()
+    
     # 加载数据库
-    filepath = './考试院faq第1版第7.00稿（打印版）-修改20250508 - 高考 一到六.csv'
-    dataset = pd.read_csv(filepath)
+    # filepath = './考试院faq第1版第7.00稿（打印版）-修改20250508 - 高考 一到六.csv'
+    dataset = pd.read_csv(parser.input_path)
     print(dataset.head())
     
     triples_list = []
@@ -65,4 +71,4 @@ if __name__ == "__main__":
         print(f"Error: {e}")
     finally:     
         dataset["三元组"] = triples_list
-        dataset.to_csv('./考试院faq第1版第7.00稿（打印版）-修改20250508 - 高考 一到六_triplets.csv', index=False)
+        dataset.to_csv(parser.output, index=False)

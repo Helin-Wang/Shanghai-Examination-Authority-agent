@@ -1,9 +1,9 @@
-
 from openai import OpenAI
 import yaml
 from docx import Document
 import re
 import pandas as pd
+import argparse
 
 def list_headings(doc_path):
     doc = Document(doc_path)
@@ -76,7 +76,11 @@ def word2csv(doc_path):
     return structured_doc        
 
 if __name__ == '__main__':   
-    # 读取 Word 文档的标题
-    filepath = '/Users/wanghelin/Documents/毕设/code-langgraph/data/考试院faq第1版第7.00稿（打印版）-修改20250508 - 高考 一到六.docx'
-    structured_doc = word2csv(filepath)
-    structured_doc.to_csv('/Users/wanghelin/Documents/毕设/code-langgraph/data/build/考试院faq第1版第7.00稿（打印版）-修改20250508 - 高考 一到六.csv', index=False)
+    parser = argparse.ArgumentParser(description="Convert a Word document to CSV.")
+    parser.add_argument("input_path", help="Path to the input Word document.")
+    parser.add_argument("output_path", help="Path to save the output CSV file.")
+    
+    args = parser.parse_args()
+    
+    structured_doc = word2csv(args.input_path)
+    structured_doc.to_csv(args.output_path, index=False)
