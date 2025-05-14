@@ -5,12 +5,9 @@ import re
 import os
 import argparse
 
-api_key_r1 = 'ebe4d4b6-00ae-4ea7-9890-9356d6a29570'
-os.environ["OPENAI_API_BASE"] = 'https://ark.cn-beijing.volces.com/api/v3'
-os.environ["OPENAI_API_KEY"] = api_key_r1
 client = OpenAI(
-  api_key=api_key_r1, 
-  base_url = 'https://ark.cn-beijing.volces.com/api/v3'
+  api_key="", # Your API Key 
+  base_url = "", # Your Base Url
 )
 
 prompt = """你是一个知识图谱专家。我正在制作关于考试信息的知识图谱，我将给你一段文字，请依次完成下面几个步骤：
